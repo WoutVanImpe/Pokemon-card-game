@@ -1,4 +1,4 @@
-export interface PokemonType {
+export default interface PokemonType {
   id: string;
   name: string;
   supertype: string;

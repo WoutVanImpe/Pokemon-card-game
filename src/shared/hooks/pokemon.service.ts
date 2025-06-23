@@ -1,5 +1,5 @@
-import type { PokemonType } from "./pokemon.types";
 import { ApiKey } from "~shared/keys/pokemonKeys";
+import type PokemonType from "./pokemon.types";
 
 class PokemonService {
 	async getAllPokemons(): Promise<PokemonType[]> {
@@ -14,7 +14,7 @@ class PokemonService {
 		}
 
 		const data = await response.json();
-		return data as PokemonType[];
+		return data.data as PokemonType[];
 	}
 }
 export const pokemonService = new PokemonService();
