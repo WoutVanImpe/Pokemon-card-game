@@ -25,8 +25,10 @@
 		"paths": {
 			"~app/*": ["./src/app/*"],
 			"~home/*": ["./src/home/*"],
-			"~contact/*": ["./src/contact/*"],
-			"~projects/*": ["./src/projects/*"],
+			"~arena/*": ["./src/arena/*"],
+			"~login/*": ["./src/login/*"],
+			"~shop/*": ["./src/shop/*"],
+			"~storage/*": ["./src/storage/*"],
 			"~shared/*": ["./src/shared/*"]
 		}
 	},
