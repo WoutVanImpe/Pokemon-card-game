@@ -1,8 +1,13 @@
 import type { PokemonType } from "./pokemon.types";
+import { ApiKey } from "~shared/keys/pokemonKeys";
 
 class PokemonService {
-	async getPokemons(): Promise<PokemonType[]> {
-		const response = await fetch("https://raw.githubusercontent.com/EHB-MCT/cp-frontend-MaximWesterbeek/refs/heads/main/course-project/public/api/fairytaleList.json");
+	async getAllPokemons(): Promise<PokemonType[]> {
+		const response = await fetch("https://api.pokemontcg.io/v2/cards", {
+			headers: {
+				"X-Api-Key": ApiKey,
+			},
+		});
 
 		if (!response.ok) {
 			throw new Error("Error fetching pokemon");
