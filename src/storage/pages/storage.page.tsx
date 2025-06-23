@@ -1,3 +1,7 @@
 export const Storage = () => {
-	return <div></div>;
+	return (
+		<div>
+			<h1>STORAGE</h1>
+		</div>
+	);
 };
