@@ -19,7 +19,10 @@ export const CardsProvider = ({ children }: { children: React.ReactNode }) => {
 
 		if (!data) return;
 
-		const filtered = data.filter((pokemon) => !pokemon.subtypes.includes("TAG TEAM"));
+		let filtered = data.filter((pokemon) => !pokemon.subtypes.includes("TAG TEAM"));
+		filtered = filtered.filter((pokemon) => pokemon.rarity !== "Promo");
+		filtered = filtered.filter((pokemon) => pokemon.rarity !== "Rare Break");
+		filtered = filtered.filter((pokemon) => pokemon.rarity !== "Rare Holo LV.X");
 
 		setFilteredCards(filtered);
 	}, [data, filteredCards]);
