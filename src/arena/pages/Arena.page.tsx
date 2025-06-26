@@ -1,3 +1,7 @@
 export const Arena = () => {
-	return <div></div>;
+	return (
+		<div>
+			<h1>ARENA</h1>
+		</div>
+	);
 };
