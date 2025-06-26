@@ -10,10 +10,8 @@ export const Home = () => {
 		<div className={style["p-home"]}>
 			<h1>HOME</h1>
 			<div className={style["p-home__list"]}>
-				{allCards?.map((pokemon: PokemonType) => (
-					<PokemonCard key={pokemon.id} pokemon={pokemon} />
-				))}
-			</div>
+				{allCards?.map((pokemon: PokemonType) => (pokemon.rarity === "Common" ? <PokemonCard key={pokemon.id} pokemon={pokemon} /> : null))}
+				</div>
 		</div>
 	);
 };
