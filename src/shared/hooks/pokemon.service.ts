@@ -1,14 +1,15 @@
 import { ApiKey } from "~shared/keys/pokemonKeys";
-import type PokemonType from "./pokemon.types";
+import type PokemonAPIType from "./pokemonAPI.types";
+import type PokemonLocalType from "./pokemonLocal.types";
 
 class PokemonService {
-	async getAllPokemons(): Promise<PokemonType[]> {
-		const baseUrl = `https://api.pokemontcg.io/v2/cards?q=nationalPokedexNumbers:[1 TO 151]`;
+	async getAllAPIPokemons(): Promise<PokemonAPIType[]> {
+		const baseUrl = `https://api.pokemontcg.io/v2/cards?q=nationalPokedexNumbers:[1 TO 368]`;
 		const pageSize = 250;
 
 		let currentPage = 1;
-		let allCards: PokemonType[] = [];
-		let totalCount = 4200;
+		let allCards: PokemonAPIType[] = [];
+		let totalCount = 8611;
 
 		do {
 			const response = await fetch(`${baseUrl}&page=${currentPage}&pageSize=${pageSize}`, {
@@ -22,14 +23,20 @@ class PokemonService {
 			}
 
 			const data = await response.json();
-			console.log("page" + currentPage + " done");
 
 			allCards = [...allCards, ...data.data];
 			currentPage++;
+			console.log("page" + currentPage + " done (" + allCards.length + ")");
 		} while (allCards.length < totalCount);
 
-		const pokemons = allCards.filter((card: PokemonType) => card.supertype === "Pokémon");
+		const pokemons = allCards.filter((card: PokemonAPIType) => card.supertype === "Pokémon");
 		return pokemons;
+	}
+	async getAllLocalPokemons(): Promise<PokemonLocalType[]> {
+		const res = await fetch("./pokemons.json");
+		const json = await res.json();
+		console.log(json);
+		return json;
 	}
 }
 

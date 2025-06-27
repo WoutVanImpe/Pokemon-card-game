@@ -1,17 +1,17 @@
-import type PokemonType from "~shared/hooks/pokemon.types";
+import type PokemonAPIType from "~shared/hooks/pokemonAPI.types";
 import { usePokemonCards } from "../../context/CardContext";
 import { RarityGroups, type RarityGroupKey } from "./RarityGroups";
 
 export const UseCardPicker = () => {
 	const { allCards } = usePokemonCards();
 
-	const getCard = (rarityGroup: RarityGroupKey): PokemonType | null => {
-		const filterByRarityGroup = (group: RarityGroupKey): PokemonType[] => {
+	const getCard = (rarityGroup: RarityGroupKey): PokemonAPIType | null => {
+		const filterByRarityGroup = (group: RarityGroupKey): PokemonAPIType[] => {
 			if (!allCards) return [];
 			return allCards.filter((card) => RarityGroups[group].includes(card.rarity));
 		};
 
-		const categorizedCards: Record<RarityGroupKey, PokemonType[]> = {
+		const categorizedCards: Record<RarityGroupKey, PokemonAPIType[]> = {
 			Common: filterByRarityGroup("Common"),
 			Uncommon: filterByRarityGroup("Uncommon"),
 			Rare: filterByRarityGroup("Rare"),
@@ -33,9 +33,9 @@ export const UseCardPicker = () => {
 		return shuffled[0];
 	};
 	const CreatePack = () => {
-		const Pack: PokemonType[] = [];
+		const Pack: PokemonAPIType[] = [];
 
-		const safePush = (pack: PokemonType[], card: PokemonType | null) => {
+		const safePush = (pack: PokemonAPIType[], card: PokemonAPIType | null) => {
 			if (card !== null) {
 				pack.push(card);
 			}

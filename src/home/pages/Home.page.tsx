@@ -1,7 +1,8 @@
 import { PokemonCard } from "~shared/components/pokemonCard/PokemonCard";
 import style from "./home.module.scss";
 import { usePokemonCards } from "../../context/CardContext";
-import type PokemonType from "~shared/hooks/pokemon.types";
+import type PokemonAPIType from "~shared/hooks/pokemonAPI.types";
+import type PokemonLocalType from "~shared/hooks/pokemonLocal.types";
 
 export const Home = () => {
 	const { allCards } = usePokemonCards();
@@ -10,8 +11,10 @@ export const Home = () => {
 		<div className={style["p-home"]}>
 			<h1>HOME</h1>
 			<div className={style["p-home__list"]}>
-				{allCards?.map((pokemon: PokemonType) => (pokemon.rarity === "Common" ? <PokemonCard key={pokemon.id} pokemon={pokemon} /> : null))}
-				</div>
+				{allCards?.map((pokemon: PokemonLocalType) => (
+					<PokemonCard key={pokemon.id} pokemon={pokemon} />
+				))}
+			</div>
 		</div>
 	);
 };

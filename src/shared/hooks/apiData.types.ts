@@ -1,7 +1,7 @@
-import type PokemonType from "./pokemon.types";
+import type PokemonAPIType from "./pokemonAPI.types";
 
 export default interface ApiData {
-	data: PokemonType[];
+	data: PokemonAPIType[];
 	page: number;
 	pageSize: number;
 }

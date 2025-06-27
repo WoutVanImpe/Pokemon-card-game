@@ -1,9 +1,10 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import type PokemonType from "~shared/hooks/pokemon.types";
-import { useGetPokemons } from "~shared/hooks/useGetPokemons.hooks";
+import type PokemonAPIType from "~shared/hooks/pokemonAPI.types";
+import type PokemonLocalType from "~shared/hooks/pokemonLocal.types";
+import { useGetAPIPokemons, useGetLocalPokemons } from "~shared/hooks/useGetPokemons.hooks";
 
 type CardContextType = {
-	allCards: PokemonType[] | null;
+	allCards: PokemonLocalType[] | null;
 };
 
 const CardContext = createContext<CardContextType>({
@@ -11,18 +12,18 @@ const CardContext = createContext<CardContextType>({
 });
 
 export const CardsProvider = ({ children }: { children: React.ReactNode }) => {
-	const { data } = useGetPokemons();
-	const [filteredCards, setFilteredCards] = useState<PokemonType[] | null>(null);
+	const { data } = useGetLocalPokemons();
+	// const { data } = useGetAPIPokemons();
+	const [filteredCards, setFilteredCards] = useState<PokemonLocalType[] | null>(null);
 
 	useEffect(() => {
 		if (filteredCards) return;
 
 		if (!data) return;
-
-		let filtered = data.filter((pokemon) => !pokemon.subtypes.includes("TAG TEAM"));
-		filtered = filtered.filter((pokemon) => pokemon.rarity !== "Promo");
-		filtered = filtered.filter((pokemon) => pokemon.rarity !== "Rare Break");
-		filtered = filtered.filter((pokemon) => pokemon.rarity !== "Rare Holo LV.X");
+		let filtered = data;
+		// filtered = data.filter((pokemon) => !pokemon.subtypes.includes("TAG TEAM"));
+		// filtered = filtered.filter((pokemon) => pokemon.rarity !== "Rare Break");
+		// filtered = filtered.filter((pokemon) => pokemon.rarity !== "Rare Holo LV.X");
 
 		setFilteredCards(filtered);
 	}, [data, filteredCards]);
