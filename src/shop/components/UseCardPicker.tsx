@@ -1,17 +1,17 @@
-import type PokemonAPIType from "~shared/hooks/pokemonAPI.types";
+import type PokemonLocalType from "~shared/hooks/pokemonLocal.types";
 import { usePokemonCards } from "../../context/CardContext";
 import { RarityGroups, type RarityGroupKey } from "./RarityGroups";
 
 export const UseCardPicker = () => {
 	const { allCards } = usePokemonCards();
 
-	const getCard = (rarityGroup: RarityGroupKey): PokemonAPIType | null => {
-		const filterByRarityGroup = (group: RarityGroupKey): PokemonAPIType[] => {
+	const getCard = (rarityGroup: RarityGroupKey): PokemonLocalType | null =>  {
+		const filterByRarityGroup = (group: RarityGroupKey): PokemonLocalType[] => {
 			if (!allCards) return [];
 			return allCards.filter((card) => RarityGroups[group].includes(card.rarity));
 		};
 
-		const categorizedCards: Record<RarityGroupKey, PokemonAPIType[]> = {
+		const categorizedCards: Record<RarityGroupKey, PokemonLocalType[]> = {
 			Common: filterByRarityGroup("Common"),
 			Uncommon: filterByRarityGroup("Uncommon"),
 			Rare: filterByRarityGroup("Rare"),
@@ -30,12 +30,13 @@ export const UseCardPicker = () => {
 		};
 
 		const shuffled = shuffleArray(cards);
+		console.log(shuffled[0]);
 		return shuffled[0];
 	};
-	const CreatePack = () => {
-		const Pack: PokemonAPIType[] = [];
+	const CreatePack = async () => {
+		const Pack: PokemonLocalType[] = [];
 
-		const safePush = (pack: PokemonAPIType[], card: PokemonAPIType | null) => {
+		const safePush = (pack: PokemonLocalType[], card: PokemonLocalType | null) => {
 			if (card !== null) {
 				pack.push(card);
 			}
@@ -70,6 +71,7 @@ export const UseCardPicker = () => {
 			safePush(Pack, getCard("Legendary"));
 		}
 
+		console.log(Pack);
 		return Pack;
 	};
 
