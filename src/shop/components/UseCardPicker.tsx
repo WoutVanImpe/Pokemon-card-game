@@ -5,7 +5,7 @@ import { RarityGroups, type RarityGroupKey } from "./RarityGroups";
 export const UseCardPicker = () => {
 	const { allCards } = usePokemonCards();
 
-	const getCard = (rarityGroup: RarityGroupKey): PokemonLocalType | null =>  {
+	const getCard = async (rarityGroup: RarityGroupKey): Promise<PokemonLocalType | null> => {
 		const filterByRarityGroup = (group: RarityGroupKey): PokemonLocalType[] => {
 			if (!allCards) return [];
 			return allCards.filter((card) => RarityGroups[group].includes(card.rarity));
@@ -31,6 +31,7 @@ export const UseCardPicker = () => {
 
 		const shuffled = shuffleArray(cards);
 		console.log(shuffled[0]);
+
 		return shuffled[0];
 	};
 	const CreatePack = async () => {
@@ -43,32 +44,34 @@ export const UseCardPicker = () => {
 		};
 
 		for (let i = 0; i < 6; i++) {
-			safePush(Pack, getCard("Common"));
+			safePush(Pack, await getCard("Common"));
 		}
 		for (let i = 0; i < 2; i++) {
-			safePush(Pack, getCard("Uncommon"));
+			safePush(Pack, await getCard("Uncommon"));
 		}
 
 		const randomNumber1 = Math.floor(Math.random() * 100);
+		console.log(randomNumber1);
 		if (randomNumber1 < 71) {
-			safePush(Pack, getCard("Uncommon"));
+			safePush(Pack, await getCard("Uncommon"));
 		} else if (randomNumber1 < 91) {
-			safePush(Pack, getCard("Rare"));
+			safePush(Pack, await getCard("Rare"));
 		} else {
-			safePush(Pack, getCard("SuperRare"));
+			safePush(Pack, await getCard("SuperRare"));
 		}
 
 		const randomNumber2 = Math.floor(Math.random() * 100);
+		console.log(randomNumber2);
 		if (randomNumber2 < 61) {
-			safePush(Pack, getCard("Rare"));
+			safePush(Pack, await getCard("Rare"));
 		} else if (randomNumber2 < 81) {
-			safePush(Pack, getCard("SuperRare"));
+			safePush(Pack, await getCard("SuperRare"));
 		} else if (randomNumber2 < 91) {
-			safePush(Pack, getCard("UltraRare"));
+			safePush(Pack, await getCard("UltraRare"));
 		} else if (randomNumber2 < 97) {
-			safePush(Pack, getCard("Shiny"));
+			safePush(Pack, await getCard("Shiny"));
 		} else {
-			safePush(Pack, getCard("Legendary"));
+			safePush(Pack, await getCard("Legendary"));
 		}
 
 		console.log(Pack);
