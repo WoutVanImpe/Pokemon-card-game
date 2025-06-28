@@ -64,17 +64,20 @@ export const UseCardPicker = () => {
 		const pokemonMoves: PokemonMoveType[] = [];
 		if (data?.moves) {
 			const movePool = shuffleArray(data.moves);
-			for (let i = 0; i < 0; i++) {
+			for (let i = 0; i < 4; i++) {
 				const data = await fetchPokemonMove(movePool[i].move.url);
+				console.log(data);
 				if (data) {
 					pokemonMoves.push({
 						name: data.name,
-						type: data.type,
-						damage: data.damage,
+						type: {
+							name: data.type.name,
+						},
+						power: data.power ?? 0,
 						pp: data.pp,
 						priority: data.priority,
 						stat_changes: data.stat_changes ?? [],
-						accuracy: data.accuracy ?? 100, // fallback indien null
+						accuracy: data.accuracy ?? 100,
 					});
 				}
 			}

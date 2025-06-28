@@ -1,7 +1,9 @@
 export default interface PokemonMoveType {
 	name: string;
-	type: string;
-	damage: number;
+	type: {
+		name: string;
+	};
+	power: number;
 	pp: number;
 	priority: number;
 	stat_changes: StatChange[];
