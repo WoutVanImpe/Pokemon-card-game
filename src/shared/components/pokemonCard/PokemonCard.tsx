@@ -1,6 +1,6 @@
-import type PokemonAPIType from "~shared/hooks/pokemonAPI.types";
+import type PokemonAPIType from "~shared/hooks/types/pokemonAPI.types";
 import styles from "./PokemonCard.module.scss";
-import type PokemonLocalType from "~shared/hooks/pokemonLocal.types";
+import type PokemonLocalType from "~shared/hooks/types/pokemonLocal.types";
 
 export const PokemonCard = ({ pokemon }: { pokemon: PokemonLocalType }) => {
 	return (

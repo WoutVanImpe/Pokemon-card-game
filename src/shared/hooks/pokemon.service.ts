@@ -1,7 +1,7 @@
 import { ApiKey } from "~shared/keys/pokemonKeys";
-import type PokemonAPIType from "./pokemonAPI.types";
-import type PokemonLocalType from "./pokemonLocal.types";
-import type PokemonInfoType from "./pokemonInfo.types";
+import type PokemonAPIType from "./types/pokemonAPI.types";
+import type PokemonLocalType from "./types/pokemonLocal.types";
+import type PokemonInfoType from "./types/pokemonInfo.types";
 
 class PokemonService {
 	async getAllAPIPokemons(): Promise<PokemonAPIType[]> {
