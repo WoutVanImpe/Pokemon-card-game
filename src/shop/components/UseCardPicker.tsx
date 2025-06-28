@@ -1,6 +1,11 @@
-import type PokemonLocalType from "~shared/hooks/pokemonLocal.types";
+import type PokemonLocalType from "~shared/hooks/types/pokemonLocal.types";
 import { usePokemonCards } from "../../context/CardContext";
 import { RarityGroups, type RarityGroupKey } from "./RarityGroups";
+import type FullPokemon from "~shared/types/fullPokemon.types";
+import { DefaultPokemon } from "./defaultPokemon";
+import type PokemonMoveType from "~shop/types/pokemonMove.types";
+import type Stats from "../types/stats.types";
+import { fetchPokemonInfo, fetchPokemonMove } from "./fetches";
 
 export const UseCardPicker = () => {
 	const { allCards } = usePokemonCards();
@@ -30,9 +35,68 @@ export const UseCardPicker = () => {
 		};
 
 		const shuffled = shuffleArray(cards);
-		console.log(shuffled[0]);
+		const pickedPokemon = shuffled[0];
+		let fullPokemon: FullPokemon = DefaultPokemon;
+		const data = await fetchPokemonInfo(pickedPokemon.name.toLowerCase());
 
-		return shuffled[0];
+		// types
+		const pokemonTypes: string[] = [];
+		data?.types.forEach((type) => pokemonTypes.push(type.type.name));
+
+		// stats
+		const pokemonStats = { hp: 0, attack: 0, defense: 0, speed: 0 };
+		data?.stats.forEach((stat) => {
+			if (stat.stat.name == "hp") {
+				pokemonStats.hp = stat.base_stat;
+			}
+			if (stat.stat.name == "attack") {
+				pokemonStats.attack = stat.base_stat;
+			}
+			if (stat.stat.name == "defense") {
+				pokemonStats.defense = stat.base_stat;
+			}
+			if (stat.stat.name == "speed") {
+				pokemonStats.speed = stat.base_stat;
+			}
+		});
+
+		// moves
+		const pokemonMoves: PokemonMoveType[] = [];
+		if (data?.moves) {
+			const movePool = shuffleArray(data.moves);
+			for (let i = 0; i < 0; i++) {
+				const data = await fetchPokemonMove(movePool[i].move.url);
+				if (data) {
+					pokemonMoves.push({
+						name: data.name,
+						type: data.type,
+						damage: data.damage,
+						pp: data.pp,
+						priority: data.priority,
+						stat_changes: data.stat_changes ?? [],
+						accuracy: data.accuracy ?? 100, // fallback indien null
+					});
+				}
+			}
+		} else {
+			throw new Error("Error fetching Pokémon Move");
+		}
+		fullPokemon = buildPokemon(pickedPokemon, pokemonTypes, pokemonStats, pokemonMoves);
+
+		return fullPokemon;
+	};
+
+	const buildPokemon = (basics: PokemonLocalType, type: string[], stats: Stats, moves: PokemonMoveType[]) => {
+		const pokemon: FullPokemon = {
+			id: basics.id,
+			name: basics.name,
+			rarity: basics.rarity,
+			image: basics.image,
+			moves: moves,
+			types: type,
+			stats: stats,
+		};
+		return pokemon;
 	};
 	const CreatePack = async () => {
 		const Pack: PokemonLocalType[] = [];

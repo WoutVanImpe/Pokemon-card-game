@@ -1,7 +1,8 @@
 import { ApiKey } from "~shared/keys/pokemonKeys";
 import type PokemonAPIType from "./types/pokemonAPI.types";
 import type PokemonLocalType from "./types/pokemonLocal.types";
-import type PokemonInfoType from "./types/pokemonInfo.types";
+import type PokemonInfoType from "../../shop/types/pokemonInfo.types";
+import type PokemonMoveType from "../../shop/types/pokemonMove.types";
 
 class PokemonService {
 	async getAllAPIPokemons(): Promise<PokemonAPIType[]> {
@@ -39,19 +40,6 @@ class PokemonService {
 		const json = await res.json();
 		console.log(json);
 		return json;
-	}
-
-	async getPokemonInfo(pokemon: string): Promise<PokemonInfoType> {
-		const baseUrl = "https://pokeapi.co/api/v2/pokemon/";
-		const response = await fetch(`${baseUrl}${pokemon}`);
-
-		if (!response.ok) {
-			throw new Error("Error fetching Pokémon Info");
-		}
-
-		const data = await response.json();
-
-		return data;
 	}
 }
 
