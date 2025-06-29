@@ -1,10 +1,55 @@
-.p-shop{
-    &__list {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 10px;
+.p-shop {
+	padding: 2rem;
+	text-align: center;
+}
 
-        
-    }
+.p-shop__header {
+	margin-bottom: 2rem;
+
+	h1 {
+		font-size: 2.5rem;
+		margin-bottom: 0.5rem;
+	}
+
+	p {
+		font-size: 1.1rem;
+		color: #555;
+		margin-bottom: 1rem;
+	}
+
+	button {
+		background-color: #3b4cca;
+		color: #fff;
+		border: none;
+		padding: 0.75rem 1.5rem;
+		border-radius: 8px;
+		font-size: 1rem;
+		cursor: pointer;
+		transition: background-color 0.2s ease;
+
+		&:hover {
+			background-color: #2a3b9c;
+		}
+
+		&:disabled {
+			background-color: #aaa;
+			cursor: not-allowed;
+		}
+	}
+}
+
+.p-shop__results {
+	margin-top: 2rem;
+}
+
+.p-shop__list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 1rem;
+}
+
+.p-shop__empty {
+	color: #777;
+	font-style: italic;
 }
