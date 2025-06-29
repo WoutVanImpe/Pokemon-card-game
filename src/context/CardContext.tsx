@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import type PokemonAPIType from "~shared/hooks/pokemonAPI.types";
-import type PokemonLocalType from "~shared/hooks/pokemonLocal.types";
+import type PokemonAPIType from "~shared/hooks/types/pokemonAPI.types";
+import type PokemonLocalType from "~shared/hooks/types/pokemonLocal.types";
 import { useGetAPIPokemons, useGetLocalPokemons } from "~shared/hooks/useGetPokemons.hooks";
 
 type CardContextType = {

@@ -1,6 +1,8 @@
 import { ApiKey } from "~shared/keys/pokemonKeys";
-import type PokemonAPIType from "./pokemonAPI.types";
-import type PokemonLocalType from "./pokemonLocal.types";
+import type PokemonAPIType from "./types/pokemonAPI.types";
+import type PokemonLocalType from "./types/pokemonLocal.types";
+import type PokemonInfoType from "../../shop/types/pokemonInfo.types";
+import type PokemonMoveType from "../../shop/types/pokemonMove.types";
 
 class PokemonService {
 	async getAllAPIPokemons(): Promise<PokemonAPIType[]> {
@@ -32,6 +34,7 @@ class PokemonService {
 		const pokemons = allCards.filter((card: PokemonAPIType) => card.supertype === "Pokémon");
 		return pokemons;
 	}
+
 	async getAllLocalPokemons(): Promise<PokemonLocalType[]> {
 		const res = await fetch("./pokemons.json");
 		const json = await res.json();

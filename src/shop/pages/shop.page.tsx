@@ -1,6 +1,6 @@
 import { useState } from "react";
 import style from "./shop.module.scss";
-import type PokemonLocalType from "~shared/hooks/pokemonLocal.types";
+import type PokemonLocalType from "~shared/hooks/types/pokemonLocal.types";
 import { PokemonCard } from "~shared/components/pokemonCard/PokemonCard";
 import { UseCardPicker } from "~shop/components/UseCardPicker";
 

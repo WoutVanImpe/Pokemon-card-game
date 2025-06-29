@@ -1,4 +1,4 @@
-import type PokemonAPIType from "~shared/hooks/pokemonAPI.types";
+import type PokemonAPIType from "~shared/hooks/types/pokemonAPI.types";
 
 export const CardStorage = {
 	save: (value: PokemonAPIType[]) => sessionStorage.setItem("cards", JSON.stringify(value)),

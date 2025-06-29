@@ -1,8 +1,8 @@
 import { PokemonCard } from "~shared/components/pokemonCard/PokemonCard";
 import style from "./home.module.scss";
 import { usePokemonCards } from "../../context/CardContext";
-import type PokemonAPIType from "~shared/hooks/pokemonAPI.types";
-import type PokemonLocalType from "~shared/hooks/pokemonLocal.types";
+import type PokemonAPIType from "~shared/hooks/types/pokemonAPI.types";
+import type PokemonLocalType from "~shared/hooks/types/pokemonLocal.types";
 
 export const Home = () => {
 	const { allCards } = usePokemonCards();
