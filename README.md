@@ -1,54 +1,45 @@
-# React + TypeScript + Vite
+# PokéPack – Pokémon Kaarten Pack Simulator 🃏
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+PokéPack is een interactieve webapplicatie waarmee gebruikers digitale Pokémonkaarten kunnen verzamelen door virtuele kaartpakketten te openen. De kaarten worden willekeurig geselecteerd op basis van hun zeldzaamheid.
 
-Currently, two official plugins are available:
+Dit project toont mijn full-stack development vaardigheden met moderne technologieën zoals React, TypeScript, Node.js en MongoDB.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+🔗 Probeer het hier uit: [woutvanimpe.github.io/Pokemon-card-game](https://woutvanimpe.github.io/Pokemon-card-game)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Geen installatie nodig — open de link en begin meteen met packs openen!
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Functionaliteiten
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- 🎁 Pack simulator: Open virtuele packs en ontvang willekeurige Pokémonkaarten met verschillende zeldzaamheden.
+- 📱 Responsive design: Werkt vlot op desktop en mobiel.
+- 🧠 State management: Dynamische UI-updates bij nieuwe kaarten en collectiewijzigingen.
+- 🔗 Backend API: Gebouwd met Express voor het beheren van kaartdata en logica.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+---
+
+## 🛠️ Technologieën
+
+| Frontend           | Backend          | Database    |
+|--------------------|------------------|-------------|
+| React (Vite)       | Node.js + Express| MongoDB     |
+| TypeScript         | REST API         | Mongoose    |
+
+---
+
+## 🧪 Toekomstige uitbreidingen (WIP)
+
+- 👤 Accountsysteem: Persoonlijke kaartenverzameling per gebruiker.
+- 🧱 Deck builder: Stel een eigen speeldeck samen op basis van je kaarten.
+- ⚔️ Gevechtsmodus: PvE-battles en mogelijk ook PvP in de toekomst.
+- 🗃️ Admin-dashboard: Beheerbare kaartensets en collectiebeheer.
+
+---
+
+## 🧑‍💻 Ontwikkelaar
+
+Wout Van Impe  
+[GitHub-profiel](https://github.com/woutvanimpe)
